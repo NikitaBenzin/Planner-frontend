@@ -1,0 +1,11 @@
+.wrapper {
+	@apply flex min-h-screen;
+
+	.authForm {
+		@apply w-1/4 m-auto shadow bg-sidebar rounded-xl p-layout;
+
+		.buttonsWrapper {
+			@apply flex items-center gap-5 justify-center;
+		}
+	}
+}
