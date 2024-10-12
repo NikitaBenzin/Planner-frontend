@@ -6,6 +6,10 @@ import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
+import { Heading } from '@/components/ui/Heading'
+import { Button } from '@/components/ui/buttons/Button'
+import { Field } from '@/components/ui/fields/Field'
+
 import { IAuthForm } from '@/types/auth.types'
 
 import { DASHBOARD_PAGES } from '@/config/pages-url.config'
@@ -32,7 +36,7 @@ export function Auth() {
 			push(DASHBOARD_PAGES.HOME)
 		}
 	})
-
+	// 3:34:36
 	const onSubmit: SubmitHandler<IAuthForm> = data => {
 		mutate(data)
 	}
@@ -43,9 +47,34 @@ export function Auth() {
 				className={styles.authForm}
 				onSubmit={handleSubmit(onSubmit)}
 			>
-				<div className={styles.buttonsWrapper}></div>
+				<Heading title='Auth' />
+
+				<Field
+					id='email'
+					label='Email: '
+					placeholder='Enter email: '
+					type='email'
+					extra='mb-4'
+					{...register('email', {
+						required: 'Email is required'
+					})}
+				/>
+				<Field
+					id='password'
+					label='Password: '
+					placeholder='Enter password: '
+					type='password'
+					extra='mb-6'
+					{...register('password', {
+						required: 'Password is required'
+					})}
+				/>
+
+				<div className={styles.buttonsWrapper}>
+					<Button onClick={() => setIsLoginForm(true)}>Login</Button>
+					<Button onClick={() => setIsLoginForm(false)}>Register</Button>
+				</div>
 			</form>
 		</div>
 	)
 }
-// 3:23:00
